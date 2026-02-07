@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="About" description="About this site." containerClass="max-w-6xl">
@@ -9,7 +8,7 @@ const base = import.meta.env.BASE_URL;
 
     <div class="not-prose my-6">
       <img
-        src={`${base}about.png`}
+        src="/about.png"
         alt="Vikram Sahu"
         class="w-full rounded-2xl border border-zinc-200 shadow-sm dark:border-zinc-800"
         loading="lazy"

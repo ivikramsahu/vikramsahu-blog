@@ -4,8 +4,6 @@ import { getCollection } from 'astro:content';
 import SnakesAndLadders from '../../components/SnakesAndLadders.astro';
 import QuotesWidget from '../../components/QuotesWidget.astro';
 
-const base = import.meta.env.BASE_URL;
-
 const pageSize = 10;
 
 export async function getStaticPaths() {
@@ -37,12 +35,8 @@ const start = (currentPage - 1) * pageSize;
 const pagePosts = posts.slice(start, start + pageSize);
 
 const prevHref =
-  currentPage <= 1
-    ? null
-    : currentPage === 2
-      ? base
-      : `${base}page/${currentPage - 1}/`;
-const nextHref = currentPage >= totalPages ? null : `${base}page/${currentPage + 1}/`;
+  currentPage <= 1 ? null : currentPage === 2 ? '/' : `/page/${currentPage - 1}/`;
+const nextHref = currentPage >= totalPages ? null : `/page/${currentPage + 1}/`;
 
 function estimateReadTimeMinutes(text: string) {
   const words = text.split(/\s+/).filter(Boolean).length;
@@ -110,7 +104,7 @@ function renderInlineCode(input: string) {
 
         return (
           <a
-            href={`${base}blog/${post.slug}/`}
+            href={`/blog/${post.slug}/`}
             class="block p-[30px] no-underline hover:bg-zinc-50 dark:hover:bg-zinc-800"
           >
             <div class="space-y-4">
